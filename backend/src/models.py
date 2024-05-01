@@ -1,15 +1,16 @@
-import uuid, decimal
-from datetime import date
-from enum import Enum
-from sqlmodel import Field, SQLModel
-
-'''
+"""
 TODO
 - separate into individual files
 - add create_date, update_date, etc for all models
 - create a parent "human" class for admins & members (names, addr, ssn)
 - logging/tracking for changes made (e.g. which admin modified a reimbursement)
-'''
+"""
+
+import decimal
+import uuid
+from datetime import date
+from enum import Enum
+from sqlmodel import Field, SQLModel
 
 class ReimbursementStatus(Enum):
     SUBMITTED = 0
