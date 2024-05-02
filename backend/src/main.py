@@ -8,7 +8,7 @@ from . import models # this line is necessary to create all tables
 engine = create_engine("sqlite://")
 
 @asynccontextmanager
-async def lifespan(app: FastAPI):
+async def lifespan(application: FastAPI):
     SQLModel.metadata.create_all(engine)
     yield
     SQLModel.metadata.drop_all(engine)
