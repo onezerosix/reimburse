@@ -6,10 +6,11 @@ TODO
 - logging/tracking for changes made (e.g. which admin modified a reimbursement)
 """
 
-import decimal
-import uuid
 from datetime import date
+from decimal import Decimal
 from enum import Enum
+from uuid import uuid4, UUID
+
 from sqlmodel import Field, SQLModel
 
 class ReimbursementStatus(Enum):
@@ -19,7 +20,7 @@ class ReimbursementStatus(Enum):
 
 class SQLModelBase(SQLModel):
     id: int | None = Field(default=None, primary_key=True)
-    uid: uuid = Field(default=None, index=True)
+    uid: UUID = Field(default_factory=uuid4, index=True)
 
 class Bank(SQLModelBase, table=True):
     name: str
@@ -37,12 +38,12 @@ class BankMember(SQLModelBase, table=True):
 
 class Account(SQLModelBase, table=True):
     bank_member_id: int = Field(default=None, foreign_key = "bankmember.id", nullable=False)
-    balance: decimal = Field(default=0, max_digits=15, decimal_places=2)
+    balance: Decimal = Field(default=0, max_digits=15, decimal_places=2)
     # TODO: add balance, etc
 
 class Reimbursement(SQLModelBase, table=True):
     account_id: int = Field(default=None, foreign_key = "account.id", nullable=False)
     description: str
-    amount: decimal = Field(default=0, max_digits=10, decimal_places=2)
+    amount: Decimal = Field(default=0, max_digits=10, decimal_places=2)
     transaction_date: date
     status: ReimbursementStatus = Field(default=ReimbursementStatus.SUBMITTED)
