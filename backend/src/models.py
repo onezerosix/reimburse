@@ -1,5 +1,6 @@
 """
 TODO
+- don't use a random int for reimbursement.account_id
 - separate into individual files under a db folder
 - create separate models for API usage that don't include unnecessary/sensistive info (such as id)
 
@@ -11,6 +12,7 @@ TODO
 from datetime import date
 from decimal import Decimal
 from enum import Enum
+from random import randint
 from uuid import uuid4, UUID
 
 from sqlmodel import Field, SQLModel
@@ -39,12 +41,13 @@ class BankMember(SQLModelBase, table=True):
     # TODO: add ssn, address, email, join_date, reimbursement_ids(?)
 
 class Account(SQLModelBase, table=True):
-    bank_member_id: int = Field(default=None, foreign_key = "bankmember.id", nullable=False)
+    bank_member_id: int = Field(default=None, foreign_key="bankmember.id", nullable=False)
     balance: Decimal = Field(default=0, max_digits=15, decimal_places=2)
     # TODO: add balance, etc
 
 class Reimbursement(SQLModelBase, table=True):
-    account_id: int = Field(default=None, foreign_key = "account.id", nullable=False)
+    account_id: int = Field(default_factory=lambda: randint(111111111,999999999),
+                            foreign_key="account.id", nullable=False)
     description: str
     amount: Decimal = Field(default=0, max_digits=10, decimal_places=2)
     transaction_date: date
