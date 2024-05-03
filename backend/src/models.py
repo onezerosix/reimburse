@@ -1,6 +1,8 @@
 """
 TODO
-- separate into individual files
+- separate into individual files under a db folder
+- create separate models for API usage that don't include unnecessary/sensistive info (such as id)
+
 - add create_date, update_date, etc for all models
 - create a parent "human" class for admins & members (names, addr, ssn)
 - logging/tracking for changes made (e.g. which admin modified a reimbursement)
