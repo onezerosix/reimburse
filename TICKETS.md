@@ -2,8 +2,8 @@
 1. Create Bank, BankAdministrator, BankMember, and Reimbursement models
 2. Add database
 3. Create GET /reimbursements
-4. Create POST /reimbursement
-5. Create PATCH /reimbursement/{id}
+4. Create POST /reimbursements
+5. Create PATCH /reimbursements/{id}
 6. Create home page
 7. Add side bar
 8. Create table component
