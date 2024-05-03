@@ -1,16 +1,13 @@
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
-from sqlmodel import create_engine, SQLModel
 
-from . import models # this line is necessary to create all tables
-
-engine = create_engine("sqlite://")
+from .db import create_tables_with_data, delete_tables
 
 @asynccontextmanager
 async def lifespan(application: FastAPI):
-    SQLModel.metadata.create_all(engine)
+    create_tables_with_data()
     yield
-    SQLModel.metadata.drop_all(engine)
+    delete_tables()
 
 app = FastAPI(lifespan=lifespan)
