@@ -29,7 +29,7 @@ def test_creates_one_record(client: TestClient, session: Session) -> None:
     assert response.json() is not None
     assert isinstance(response.json(), int)
 
-    # TODO: test against a get by id endpoint instead of DB & ensure not empty/null fields
+    # TODO: ensure not empty/null fields
     reimbursement = session.get(Reimbursement, response.json())
     assert reimbursement is not None
     assert reimbursement.description == request.description
