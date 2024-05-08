@@ -2,7 +2,8 @@
 TODO
 - don't use a random int for reimbursement.account_id
 - separate into individual files under a db folder
-- create separate models for API usage that don't include unnecessary/sensistive info (such as id)
+- create separate models for API usage that don't include unnecessary/sensistive info
+- enforce/santize strings (no empty strings)
 
 - add create_date, update_date, etc for all models
 - create a parent "human" class for admins & members (names, addr, ssn)
@@ -15,6 +16,7 @@ from enum import Enum
 from random import randint
 from uuid import uuid4, UUID
 
+from pydantic import BaseModel
 from sqlmodel import Field, SQLModel
 
 class ReimbursementStatus(Enum):
@@ -52,3 +54,8 @@ class Reimbursement(SQLModelBase, table=True):
     amount: Decimal = Field(default=0, max_digits=10, decimal_places=2)
     transaction_date: date
     status: ReimbursementStatus = Field(default=ReimbursementStatus.SUBMITTED)
+
+class CreateReimbursementModel(BaseModel):
+    description: str
+    amount: Decimal
+    transaction_date: date

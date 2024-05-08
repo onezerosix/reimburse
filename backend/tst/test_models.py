@@ -15,4 +15,18 @@ test foreign keys exist:
 - reimbursement --> account_id
 
 test model column types? and enums?
+
+test each table has SQLModelBase parent class
+test each endpoint model has BaseModel parent class, not SQLModelBase
+
+test nullable and non-nullable fields.
+
+no whitespace allowed for strings (double check)
+
+test invalid values
+- negative account.balance
+- negative reimbursement.balance
+- reimbursement.status
+- dates?
+- negative CreateReimbursementModel.amount
 """

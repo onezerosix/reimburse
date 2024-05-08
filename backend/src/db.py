@@ -2,9 +2,7 @@ from sqlmodel import create_engine, Session, SQLModel
 
 from .models import * # must import tables all to create them
 
-db_engine = create_engine(
-    "sqlite://", echo=True, connect_args={"check_same_thread": False}
-)
+db_engine = create_engine("sqlite://", connect_args={"check_same_thread": False})
 
 def get_session():
     with Session(db_engine) as session:
