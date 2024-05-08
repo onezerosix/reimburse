@@ -4,11 +4,11 @@ TODO
 - use API models instead of DB ones (see models.py)
 """
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlmodel import select, Session
 
 from .db import get_session
-from .models import Reimbursement, CreateReimbursementModel
+from .models import CreateReimbursementModel, Reimbursement, UpdateReimbursementModel
 
 api_router = APIRouter(
     prefix="/reimbursements",
@@ -40,3 +40,21 @@ async def create_reimbursement(
     session.refresh(reimbursement)
 
     return reimbursement.id
+
+@api_router.patch("/")
+async def update_reimbursement(
+    *,
+    session: Session=Depends(get_session),
+    update_model: UpdateReimbursementModel
+):
+    reimbursement = session.get(Reimbursement, update_model.id)
+    if reimbursement is None:
+        raise HTTPException(status_code=404, detail="Reimbursement not found")
+
+    # TODO: validate reimbursement status hasn't been finalized (approved/denied)
+
+    reimbursement.status = update_model.status # TODO test invalid status
+    session.add(reimbursement)
+    session.commit()
+
+    return

@@ -59,3 +59,7 @@ class CreateReimbursementModel(BaseModel):
     description: str
     amount: Decimal
     transaction_date: date
+
+class UpdateReimbursementModel(BaseModel):
+    id: int
+    status: ReimbursementStatus

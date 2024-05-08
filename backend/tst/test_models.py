@@ -29,4 +29,5 @@ test invalid values
 - reimbursement.status
 - dates?
 - negative CreateReimbursementModel.amount
+- UpdateReimbursementModel.status
 """
