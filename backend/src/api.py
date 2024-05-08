@@ -1,13 +1,13 @@
 """
 TODO
-- don't directly call DB
+- don't directly call DB, use a business logic layer
 - use API models instead of DB ones (see models.py)
 """
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from sqlmodel import select, Session
 
-from .db import engine
+from .db import get_session
 from .models import Reimbursement
 
 api_router = APIRouter(
@@ -16,6 +16,7 @@ api_router = APIRouter(
 )
 
 @api_router.get("/", response_model=list[Reimbursement])
-async def get_reimbursements() -> list[Reimbursement]:
-    with Session(engine) as session:
-        return session.exec(select(Reimbursement)).all()
+async def get_reimbursements(
+    *, session: Session = Depends(get_session)
+):
+    return session.exec(select(Reimbursement)).all()

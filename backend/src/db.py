@@ -2,17 +2,23 @@ from sqlmodel import create_engine, Session, SQLModel
 
 from .models import * # must import tables all to create them
 
-engine = create_engine("sqlite://", echo=True)
+db_engine = create_engine(
+    "sqlite://", echo=True, connect_args={"check_same_thread": False}
+)
+
+def get_session():
+    with Session(db_engine) as session:
+        yield session
 
 def create_tables_with_data():
     __create_tables()
     __create_reimbursement_records()
 
 def __create_tables():
-    SQLModel.metadata.create_all(engine)
+    SQLModel.metadata.create_all(db_engine)
 
 def __create_reimbursement_records():
-    with Session(engine) as session:
+    with Session(db_engine) as session:
         for i in range(1,4):
             session.add(
                 Reimbursement(
@@ -25,4 +31,4 @@ def __create_reimbursement_records():
         session.commit()
 
 def delete_tables():
-    SQLModel.metadata.drop_all(engine)
+    SQLModel.metadata.drop_all(db_engine)
