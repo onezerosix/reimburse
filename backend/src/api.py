@@ -19,6 +19,7 @@ api_router = APIRouter(
 async def get_reimbursements(
     *, session: Session=Depends(get_session)
 ):
+    # TODO: hide account numbers (*s and only show last 4 digits) before returning
     return session.exec(select(Reimbursement)).all()
 
 @api_router.post("/", response_model=int)
