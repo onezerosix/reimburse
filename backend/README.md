@@ -1,5 +1,5 @@
 # Welcome to the backend
-Here we have the database and endpoints to interact with the database. This README describes how the backend program would work without the project's frontend.
+The database and endpoints to interact with the database are here. This README describes how the backend program would work without the project's frontend.
 
 Currently only three endpoints are implemented. Many of tests are stubs and comments. One integeration test exists.
 
@@ -15,7 +15,7 @@ Run the following line to start the program:
 
 `python3 -m uvicorn src.main:app`
 
-The homepage is at http://127.0.0.1:8000 but an endpoint does not currently exist for the homepage. To interact with the program, you can visit the following pages:
+The homepage is at http://127.0.0.1:8000 but an endpoint does not currently exist for the homepage. To interact with the program, visit the following pages:
 
 1. Go to http://127.0.0.1:8000/reimbursements to see a list of reimbursements. By default, the program adds three random reimbursements.
 2. Go to http://127.0.0.1:8000/docs to see the three current endpoints and test them out. http://127.0.0.1:8000/redoc can also be used to see the endpoint details.
