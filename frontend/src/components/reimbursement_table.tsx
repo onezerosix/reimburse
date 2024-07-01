@@ -1,5 +1,3 @@
-"use client"
-
 import {
   Table,
   TableBody,
@@ -12,19 +10,18 @@ import { getReimbrusements, ReimbursementModel, ReimbursementStatus } from "@/li
 import { formatAccountID, formatCurrency } from "@/lib/format";
 
 export async function ReimbursementTable() {
-  // TODO: padding and spacing of table
   const reimbursements: ReimbursementModel[] = await getReimbrusements()
 
   return (
     <div>
-      <Table>
+      <Table className="w-8/12">
         <TableHeader>
           <TableRow>
-            <TableHead>Date</TableHead>
-            <TableHead>Description</TableHead>
-            <TableHead>Bank Account</TableHead>
-            <TableHead>Amount</TableHead>
-            <TableHead>Status</TableHead>
+            <TableHead className="w-1/12">Date</TableHead>
+            <TableHead className="w-4/12">Description</TableHead>
+            <TableHead className="w-3/12">Bank Account</TableHead>
+            <TableHead className="w-3/12">Amount</TableHead>
+            <TableHead className="w-1/12">Status</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>

@@ -14,4 +14,6 @@ describe('ReimbursementTable', () => {
     it('should display rows received from getReimbrusements with formatting', () => {
         // TODO
     })
+
+    // TODO: test spacing and padding?
 })
