@@ -2,7 +2,7 @@
 TODO
 - don't use a random int for reimbursement.account_id
 - separate into individual files under a db folder
-- create separate models for API usage that don't include unnecessary/sensistive info
+- create separate models for API usage that don't include unnecessary/sensistive info (e.g. pre-format account_id)
 - enforce/santize strings (no empty strings)
 
 - add create_date, update_date, etc for all models
