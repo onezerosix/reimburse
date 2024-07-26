@@ -5,12 +5,13 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
-import { getReimbrusements, ReimbursementModel, ReimbursementStatus } from "@/lib/api"
+} from "@/components/ui/table";
+import { getReimbrusements, ReimbursementModel, ReimbursementStatus } from "@/lib/api";
 import { formatAccountID, formatCurrency } from "@/lib/format";
 
 export async function ReimbursementTable() {
-  const reimbursements: ReimbursementModel[] = await getReimbrusements()
+  // TODO: sort table by date or create date?
+  const reimbursements: ReimbursementModel[] = await getReimbrusements();
 
   return (
     <div>

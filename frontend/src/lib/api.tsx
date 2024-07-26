@@ -13,8 +13,26 @@ export type ReimbursementModel = {
   status: ReimbursementStatus
 };
 
+export type CreateReimbursementModel = {
+  description: string
+  amount: string // TODO: type number?
+  transaction_date: string // TODO: type Date?
+};
+
 // TODO: separate models and helper fetch functions
 
+// TODO: error handling for all functions below
 export async function getReimbrusements(): Promise<ReimbursementModel[]> {
-  return (await fetch('http://localhost:8000/reimbursements/')).json()
+  return (await fetch('http://localhost:8000/reimbursements/', { cache: 'no-store' })).json();
+}
+
+export async function createReimbursement(newReimbursement: CreateReimbursementModel): Promise<Response> {
+  // TODO: validations
+  return (await fetch('http://localhost:8000/reimbursements/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(newReimbursement),
+  }));
 }

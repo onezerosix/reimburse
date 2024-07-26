@@ -3,9 +3,17 @@ describe('Requests', () => {
         // TODO
     })
 
+    it('should render SubmitNewReimbursementDialog button', () => {
+        // TODO
+    })
+
     it('should render a ReimbursementTable', () => {
         // TODO
     })
 
     // TODO: test no scroll?
+})
+
+describe('SubmitNewReimbursementDialog', () => {
+    // TODO
 })
