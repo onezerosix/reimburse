@@ -15,7 +15,7 @@ describe('Requests', () => {
     // TODO
   })
 
-  it('should pass the results from getReimbursements to ReimbursementTableWithFilter', () => {
+  it('should pass the results from getReimbursements to ReimbursementTable', () => {
     // TODO
   })
 

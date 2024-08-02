@@ -19,6 +19,11 @@ export type CreateReimbursementModel = {
   transaction_date: string // TODO: type Date?
 };
 
+export type UpdateReimbursementModel = {
+  id: number
+  status: number
+};
+
 // TODO: separate models and helper fetch functions
 
 // TODO: error handling for all functions below
@@ -34,5 +39,16 @@ export async function createReimbursement(newReimbursement: CreateReimbursementM
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(newReimbursement),
+  }));
+}
+
+export async function updateReimbursement(updateReimbursement: UpdateReimbursementModel): Promise<Response> {
+  // TODO: validations
+  return (await fetch('http://localhost:8000/reimbursements/', {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(updateReimbursement),
   }));
 }

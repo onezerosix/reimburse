@@ -1,5 +1,5 @@
 import { getReimbrusements, ReimbursementModel } from "@/lib/api";
-import { ReimbursementTableWithFilter } from "./table";
+import { ReimbursementManagementTable } from "./table";
 
 export default async function Management() {
   const reimbursements: ReimbursementModel[] = await getReimbrusements();
@@ -9,8 +9,8 @@ export default async function Management() {
       <div className="text-2xl font-bold">
         Management
       </div>
-      <div>
-        <ReimbursementTableWithFilter reimbursements={reimbursements}/>
+      <div className="pt-5">
+        <ReimbursementManagementTable reimbursements={reimbursements}/>
       </div>
     </div>
   );

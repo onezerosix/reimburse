@@ -7,23 +7,18 @@ describe('Management', () => {
     // TODO
   })
 
-  it('should render a ReimbursementTableWithFilter', () => {
+  it('should render a ReimbursementManagementTable', () => {
     // TODO
   })
 
-  it('should pass the results from getReimbursements to ReimbursementTableWithFilter', () => {
+  it('should pass the results from getReimbursements to ReimbursementManagementTable', () => {
     // TODO
   })
 })
 
 // TODO: separate into it's own file?
-describe('ReimbursementTableWithFilter', () => {
+describe('ReimbursementManagementTable', () => {
   // TODO:
-  // should render Status dropdown (with correct values)
-  // should render a ReimbursementTable
-  // should pass ReimbursementTable what was selected in Status dropdown and all reimbursements
-  
-  // TODO: tests for handleChange function
-  // should convert string value to number and set status
-  // should set status to undefined when conversion is NaN
+  // should render a SelectStatus with onStatusChange functionality and enableAll=true
+  // should render a ReimbursementTable with the selected Status, all reimbursements, and isEditable=true
 })
