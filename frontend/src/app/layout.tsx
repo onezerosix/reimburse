@@ -35,7 +35,7 @@ export default function RootLayout({
                     Request
                   </div>
                 </Link>
-                <Link href="/" className="flex transition-all hover:bg-blue-200">
+                <Link href="/management" className="flex transition-all hover:bg-blue-200">
                   <div className="flex gap-2 items-center px-10 py-5">
                     <ManagementIcon/>
                     Mangement

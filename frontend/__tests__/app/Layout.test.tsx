@@ -15,6 +15,10 @@ describe('RootLayout', () => {
         // TODO
     })
 
+    it('should render a Link to Management page with ManagementIcon and "Management" text', () => {
+        // TODO
+    })
+
     it('should render the children', () => {
         // TODO
     })

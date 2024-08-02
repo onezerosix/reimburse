@@ -6,13 +6,17 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { getReimbrusements, ReimbursementModel, ReimbursementStatus } from "@/lib/api";
+import { ReimbursementModel, ReimbursementStatus } from "@/lib/api";
 import { formatAccountID, formatCurrency } from "@/lib/format";
 
-export async function ReimbursementTable() {
+export function ReimbursementTable({
+  reimbursements,
+  filteredStatus
+}: Readonly<{
+  reimbursements: ReimbursementModel[]
+  filteredStatus?: ReimbursementStatus // TODO: pre-filter records in parent?
+}>) {
   // TODO: sort table by date or create date?
-  const reimbursements: ReimbursementModel[] = await getReimbrusements();
-
   return (
     <div>
       <Table className="w-8/12">
@@ -26,27 +30,38 @@ export async function ReimbursementTable() {
           </TableRow>
         </TableHeader>
         <TableBody>
-            {reimbursements.map((reimbursement) => (
-              <ReimbursementRow key={reimbursement.id} reimbursement={reimbursement} />
-            ))}
-          </TableBody>
+          {reimbursements.map((reimbursement) => (
+            <ReimbursementRow
+              key={reimbursement.id}
+              reimbursement={reimbursement}
+              filteredStatus={filteredStatus}
+            />
+          ))}
+        </TableBody>
       </Table>
     </div>
   );
 }
 
 function ReimbursementRow({
-  reimbursement
-}: {
-  reimbursement: ReimbursementModel
-}) {
+  reimbursement,
+  filteredStatus
+}: Readonly<{
+  reimbursement: ReimbursementModel,
+  filteredStatus?: ReimbursementStatus,
+}>) {
   return (
-    <TableRow>
-      <TableCell>{reimbursement.transaction_date.toString()}</TableCell>
-      <TableCell>{reimbursement.description}</TableCell>
-      <TableCell>{formatAccountID(reimbursement.account_id)}</TableCell>
-      <TableCell>{formatCurrency(reimbursement.amount)}</TableCell>
-      <TableCell>{ReimbursementStatus[reimbursement.status]}</TableCell>
-    </TableRow>
+    (
+      typeof filteredStatus == "undefined" 
+      || filteredStatus == reimbursement.status
+    ) && (
+      <TableRow>
+        <TableCell>{reimbursement.transaction_date.toString()}</TableCell>
+        <TableCell>{reimbursement.description}</TableCell>
+        <TableCell>{formatAccountID(reimbursement.account_id)}</TableCell>
+        <TableCell>{formatCurrency(reimbursement.amount)}</TableCell>
+        <TableCell>{ReimbursementStatus[reimbursement.status]}</TableCell>
+      </TableRow>
+    )
   );
 }

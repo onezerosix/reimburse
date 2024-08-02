@@ -1,7 +1,10 @@
 import { ReimbursementTable } from "@/components/reimbursement_table";
 import { SubmitNewReimbursementDialog } from "./submit_new";
+import { getReimbrusements, ReimbursementModel } from "@/lib/api";
 
 export default async function Requests() {
+  const reimbursements: ReimbursementModel[] = await getReimbrusements();
+
   return (
     <div className="w-full p-10">
       <div className="text-2xl font-bold">
@@ -11,7 +14,7 @@ export default async function Requests() {
         <SubmitNewReimbursementDialog />
       </div>
       <div>
-        <ReimbursementTable />
+        <ReimbursementTable reimbursements={reimbursements} />
       </div>
     </div>
   );
