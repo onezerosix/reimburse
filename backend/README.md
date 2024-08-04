@@ -23,7 +23,7 @@ The homepage is at http://127.0.0.1:8000 but an endpoint does not currently exis
 ## Testing
 Only one integration test is currently implemented, the rest are skeletals. Run everything by running `pytest`.
 
-There are currently no unit tests, only TODO comments.
+There are currently no unit tests, only TODO comments. There is only one integration test, the rest are stubs/TODO comments.
 
 ## File organization
 The files are organized in the following manner:
